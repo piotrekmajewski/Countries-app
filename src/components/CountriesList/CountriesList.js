@@ -2,7 +2,9 @@ import React from "react";
 
 function CountreiesList() {
     return (
-        <div>CountreiesList</div>
+        <div className="list">
+            CountreiesList
+        </div>
     );
 }
 

@@ -2,7 +2,9 @@ import React from "react";
 
 function AboutCountry() {
     return (
-        <div>AboutCountry</div>
+        <div className="information">
+            AboutCountry
+        </div>
     );
 }
 
