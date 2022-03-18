@@ -381,6 +381,13 @@ p {
     margin-bottom: 45px;
 }
 
+.monit {
+    margin-top: 30vh;
+    letter-spacing: 2px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 @media (max-width: 800px) {
     .country_details_body {
         flex-direction: column;

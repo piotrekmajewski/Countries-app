@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import './App.css';
 import Header from './components/Header/Header';
@@ -12,6 +12,10 @@ import CountryDetails from "./components/CountryDetails/CountryDetails";
 function App() {
     const [darkMode, setDarkMode] = useState(false);
     const [countries, setCountries] = useState([]);
+    const countriesInputRef = useRef();
+    const alphabetically = useRef();
+
+    const noCountries = countries.status || countries.message;
 
     const switchMode = () => {
         setDarkMode((prevState) => !prevState);
@@ -23,7 +27,7 @@ function App() {
         } catch (error) {
             console.log(error);
         }
-    })
+    }, []);
 
     const fetchData = async () => {
         const response = await fetch("https://restcountries.com/v2/name/united");
@@ -32,7 +36,25 @@ function App() {
         setCountries(data);
     };
 
+    const searchCountries = () => {
+        const searchValue = countriesInputRef.current.value;
+        if (searchValue.trim()) {
+            const fetchSearch = async () => {
+                const response = await fetch(`https://restcountries.com/v2/name/${searchValue}`);
+                const data = await response.json();
 
+                setCountries(data);
+            };
+
+            try {
+                fetchSearch();
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            fetchData();
+        }
+    };
 
     return (
         <div className={`app ${darkMode ? 'darkMode' : ''}`}>
@@ -44,7 +66,7 @@ function App() {
                         <div className="app-body">
                             <div className="inputs">
                                 <div className={`search_input ${darkMode ? 'darkMode' : ''}`}>
-                                    <input type="text" placeholder="Szukaj kraju..." />
+                                    <input type="text" placeholder="Szukaj kraju..." ref={countriesInputRef} onChange={searchCountries} />
                                 </div>
                                 <div className="useful-buttons">
                                     <div className="search-button">
@@ -59,7 +81,7 @@ function App() {
                                     </div >
                                 </div>
                                 <div className={`filter-alphabetically ${darkMode ? 'darkMode' : ''}`}>
-                                    <select>
+                                    <select ref={alphabetically}>
                                         <option>A - Z</option>
                                         <option>Z - A</option>
                                     </select>
@@ -67,13 +89,16 @@ function App() {
                             </div>
                             <div className="countries">
                                 {
-                                    countries.map(country => (
+                                    !noCountries ? (countries.map((country) => (
                                         <Country
                                             darkMode={darkMode}
                                             name={country.name}
                                             flag={country.flag}
                                         />
-                                    ))}
+                                    ))
+                                    ) : (
+                                        <p className="monit">Nie znaleziono takiego państwa!</p>
+                                    )}
                             </div>
                         </div>
                     }
