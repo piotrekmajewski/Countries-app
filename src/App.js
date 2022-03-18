@@ -1,21 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import './App.css';
 import Header from './components/Header/Header';
 import Country from './components/Country/Country';
 // import Pagination from './components/Pagination/Pagination';
 // import AboutCountry from './components/AboutCountry/AboutCountry';
-import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Routes, Route } from "react-router-dom";
 import CountryDetails from "./components/CountryDetails/CountryDetails";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
+    const [countries, setCountries] = useState([]);
 
     const switchMode = () => {
         setDarkMode((prevState) => !prevState);
     };
+
+    useEffect(() => {
+        try {
+            fetchData()
+        } catch (error) {
+            console.log(error);
+        }
+    })
+
+    const fetchData = async () => {
+        const response = await fetch("https://restcountries.com/v2/name/united");
+        const data = await response.json();
+
+        setCountries(data);
+    };
+
+
 
     return (
         <div className={`app ${darkMode ? 'darkMode' : ''}`}>
@@ -42,14 +59,21 @@ function App() {
                                     </div >
                                 </div>
                                 <div className={`filter-alphabetically ${darkMode ? 'darkMode' : ''}`}>
-                                    <select className={`select ${darkMode ? 'darkMode' : ''}`}>
+                                    <select>
                                         <option>A - Z</option>
                                         <option>Z - A</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="countries">
-                                <Country darkMode={darkMode} />
+                                {
+                                    countries.map(country => (
+                                        <Country
+                                            darkMode={darkMode}
+                                            name={country.name}
+                                            flag={country.flag}
+                                        />
+                                    ))}
                             </div>
                         </div>
                     }
@@ -58,7 +82,12 @@ function App() {
             </Routes>
         </div>
     );
-
 }
+
+// key={country.alpha3Code}
+// currencyCode={country.currencies}
+// currencyName={country.currencies}
+// capital={country.capital}
+// currencySymbol={country.currencies}
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-function CountryDetails({ darkMode }) {
+function CountryDetails({ darkMode, currencyCode, name, capital, currencyName, currencySymbol, flag }) {
     return (
         <div className="country_details">
             <button className={`back ${darkMode ? 'darkMode' : ''}`}>
@@ -10,60 +10,42 @@ function CountryDetails({ darkMode }) {
             </button>
             <div className="country_details_body">
                 <div className="img_container">
-                    <img src="" alt="" />
+                    <img src={flag} alt="" />
                 </div>
                 <div className="info">
-                    <h2 className="details_name">Nazwa</h2>
+                    <h2 className="details_name">{name}</h2>
                     <div className="info_container">
                         <div className="left_info">
-                            <p>
-                                Native Name:{" "}
+                            {/* <p>
+                                Name:{name}
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
                                     Test
                                 </span>
-                            </p>
+                            </p> */}
                             <p>
-                                Popualation:{" "}
+                                Currency Name:{''}
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
-                                </span>
-                            </p>
-                            <p>
-                                Region:{" "}
-                                <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
-                                </span>
-                            </p>
-                            <p>
-                                Sub region:{" "}
-                                <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
+                                    {currencyName}
                                 </span>
                             </p>
                         </div>
                         <div className="right_info">
                             <p>
-                                Capital:{" "}
+                                Capital:{''}
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
+                                    {capital}
                                 </span>
                             </p>
                             <p>
-                                Top-level Domain:{" "}
+                                Currency Symbol:{''}
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
+                                    {currencySymbol}
                                 </span>
                             </p>
                             <p>
-                                Currencies:{" "}
+                                Currency Code:{''}
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
-                                </span>
-                            </p>
-                            <p>
-                                Languages:{" "}
-                                <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                    Test
+                                    {currencyCode}
                                 </span>
                             </p>
                         </div>

@@ -98,21 +98,33 @@ input {
     outline: none;
     font-size: 18px;
     letter-spacing: 2px;
-    color: #1f1f11;
+    color: #000000;
 }
 
 .filter-alphabetically {
     display: flex;
     padding: 5px;
     border-radius: 5px;
-    background-color: #fff;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     margin-left: 10px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.filter-alphabetically:hover {
+    background-color: rgba(173, 173, 173, 0.616);
+    color: #424242;
 }
 
 .filter-alphabetically.darkMode {
     background-color: var(--dark-mode-elements);
     color: #fff;
+}
+
+.filter-alphabetically.darkMode:hover {
+    background-color: rgba(245, 245, 245, 0.616);
+    box-shadow: 0px 3px 15px rgba(248, 248, 248, 0.226);
+    color: #fff; 
 }
 
 select {
@@ -122,11 +134,7 @@ select {
     border: none;
     outline: none;
     cursor: pointer;
-}
-
-.select.darkMode {
-    background-color: var(--dark-mode-elements);
-    color: #fff;
+    font-weight: bold;
 }
 
 .useful-buttons {
@@ -218,6 +226,8 @@ select {
 }
 
 .flag_container {
+    display: flex;
+    flex-direction: column;
     height: 170px;
     width: 100%;
 }
@@ -262,7 +272,7 @@ select {
 }
 
 .read-more.darkMode {
-    background-color: var(--dark-mode-elements);
+    background-color: rgba(248, 248, 248, 0.226);
     color: #fff;
 }
 
@@ -277,7 +287,7 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 25px 15px;
+    padding: 47px 15px;
     height: 200px;
 }
 
@@ -322,7 +332,7 @@ p {
 .back.darkMode:hover {
     background-color: rgba(245, 245, 245, 0.616);
     box-shadow: 0px 3px 15px rgba(248, 248, 248, 0.226);
-    color: #1f1f11;
+    color: #000000;
 }
 
 .country_details_body {
