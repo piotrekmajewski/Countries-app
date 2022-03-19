@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-
+import { useNavigate } from "react-router-dom";
 import './App.css';
 import Header from './components/Header/Header';
 import Country from './components/Country/Country';
@@ -14,6 +14,7 @@ function App() {
     const [countries, setCountries] = useState([]);
     const countriesInputRef = useRef();
     const alphabetically = useRef();
+    const navigate = useNavigate();
 
     const noCountries = countries.status || countries.message;
 
@@ -56,6 +57,10 @@ function App() {
         }
     };
 
+    const showDetails = (code) => {
+        navigate(`/${code}`);
+    };
+
     return (
         <div className={`app ${darkMode ? 'darkMode' : ''}`}>
             <Header onClick={switchMode} darkMode={darkMode} />
@@ -92,8 +97,12 @@ function App() {
                                     !noCountries ? (countries.map((country) => (
                                         <Country
                                             darkMode={darkMode}
+                                            key={country.alpha3Code}
+                                            code={country.alpha3Code}
+                                            capital={country.capital}
                                             name={country.name}
                                             flag={country.flag}
+                                            showDetails={showDetails}
                                         />
                                     ))
                                     ) : (
@@ -103,7 +112,7 @@ function App() {
                         </div>
                     }
                 />
-                <Route path="country-details" element={<CountryDetails darkMode={darkMode} />} />
+                <Route path="/:countryCode" element={<CountryDetails darkMode={darkMode} countries={countries} />} />
             </Routes>
         </div>
     );
