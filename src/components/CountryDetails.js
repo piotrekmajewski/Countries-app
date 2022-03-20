@@ -125,7 +125,7 @@ function CountryDetails({ darkMode, countries }) {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 

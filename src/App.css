@@ -213,10 +213,16 @@ select {
 
 .country {
     background-color: #fff;
-    width: 305px;
+    width: 205px;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    height: 370px;
+    height: 270px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.country:hover {
+    transform: scale(1.1);
 }
 
 .country.darkMode {
@@ -250,44 +256,14 @@ select {
     color: lightgray;
 }
 
-.read-more {
-    border: none;
-    background-color: rgba(173, 173, 173, 0.616);
-    outline: none;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border-radius: 5px;
-    gap: 5px;
-    color: #424242;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.read-more:hover {
-    background-color: rgba(110, 110, 110, 0.616);
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.274);
-    color: #2c2c2c;
-}
-
-.read-more.darkMode {
-    background-color: rgba(248, 248, 248, 0.226);
-    color: #fff;
-}
-
-.read-more.darkMode:hover {
-    background-color: rgba(245, 245, 245, 0.616);
-    box-shadow: 0px 3px 15px rgba(248, 248, 248, 0.226);
-    color: #424242;
-}
-
 .details {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 47px 15px;
     height: 200px;
+    padding: 0 10px 0 10px;
+    font-size: 14px;
 }
 
 p {
@@ -389,6 +365,36 @@ span {
     letter-spacing: 2px;
     font-size: 24px;
     font-weight: bold;
+}
+
+.pagination_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    height: 40px;
+    width: 140px;
+    text-decoration: none;
+    transition: background-color .2s;
+    border: 3px solid rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.pgn-first {
+    color:#000000
+}
+
+.pgn-prev {
+    color:#000000
 }
 
 @media (max-width: 800px) {

@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import './App.css';
-import Header from './components/Header/Header';
-import Country from './components/Country/Country';
-// import Pagination from './components/Pagination/Pagination';
-// import AboutCountry from './components/AboutCountry/AboutCountry';
+import Header from './components/Header';
+import Country from './components/Country';
+import Pagination from './components/Pagination'
 import ClearIcon from '@mui/icons-material/Clear';
 import { Routes, Route } from "react-router-dom";
-import CountryDetails from "./components/CountryDetails/CountryDetails";
+import CountryDetails from "./components/CountryDetails";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
@@ -109,6 +108,7 @@ function App() {
                                         <p className="monit">Nie znaleziono takiego państwa!</p>
                                     )}
                             </div>
+                            {/* <Pagination /> */}
                         </div>
                     }
                 />
@@ -117,11 +117,5 @@ function App() {
         </div>
     );
 }
-
-// key={country.alpha3Code}
-// currencyCode={country.currencies}
-// currencyName={country.currencies}
-// capital={country.capital}
-// currencySymbol={country.currencies}
 
 export default App;
