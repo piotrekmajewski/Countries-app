@@ -33,10 +33,10 @@ function HomePage() {
     };
 
     const handleOnChange = (e) => {
-        setSearchValue(e.target.value);
+        setSearchValue(e.target.value.toUpperCase());
     };
 
-    const shouldFetchCountries = searchValue.trim().length >= 2;
+    const shouldFetchCountries = searchValue.trim().length > 2;
 
     const searchCountries = () => {
         if (shouldFetchCountries) {
