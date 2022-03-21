@@ -101,30 +101,33 @@ input {
     color: #000000;
 }
 
-.filter-alphabetically {
+.alphabetically-button {
     display: flex;
-    padding: 5px;
+    padding: 11px;
+    border: none;
     border-radius: 5px;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
     margin-left: 10px;
     font-weight: bold;
+    cursor: pointer;
     transition: .3s;
 }
 
-.filter-alphabetically:hover {
+.alphabetically-button:hover {
     background-color: rgba(173, 173, 173, 0.616);
     color: #424242;
 }
 
-.filter-alphabetically.darkMode {
+.alphabetically-button.darkMode {
     background-color: var(--dark-mode-elements);
     color: #fff;
 }
 
-.filter-alphabetically.darkMode:hover {
+.alphabetically-button.darkMode:hover {
     background-color: rgba(245, 245, 245, 0.616);
     box-shadow: 0px 3px 15px rgba(248, 248, 248, 0.226);
-    color: #fff; 
+    color: #424242; 
 }
 
 select {
@@ -176,17 +179,14 @@ select {
     border: none;
     background-color: transparent;
     outline: none;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    padding: 5px;
     border-radius: 5px;
     gap: 5px;
-    margin-left: 10px; 
     cursor: pointer;
     transition: .3s;
 }
 
 .reset-btn:hover {
-    background-color: rgba(173, 173, 173, 0.616);
+    background-color: rgba(173, 173, 173, 0.247);
     color: #424242;
 }
 
@@ -387,14 +387,6 @@ span {
     transition: background-color .2s;
     border: 3px solid rgb(0, 0, 0);
     cursor: pointer;
-}
-
-.pgn-first {
-    color:#000000
-}
-
-.pgn-prev {
-    color:#000000
 }
 
 @media (max-width: 800px) {

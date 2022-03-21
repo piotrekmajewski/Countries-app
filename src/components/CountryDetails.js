@@ -15,27 +15,27 @@ function CountryDetails({ darkMode, countries }) {
     let code;
     let flagImg;
     let capital;
-    let currenciesName = [name];
-    let currenciesCode = [code];
-    let currenciesSymbol = [symbol];
+    const currenciesName = [name];
+    const currenciesCode = [code];
+    const currenciesSymbol = [symbol];
 
-    countries.forEach(country => {
+    countries.forEach((country) => {
         if (country.alpha3Code === params.countryCode) {
             name = country.name;
             flagImg = country.flag;
             capital = country.capital;
 
-            country.currencies.forEach(currency => {
-                currenciesName.push(currency.name)
-            })
+            country.currencies.forEach((currency) => {
+                currenciesName.push(currency.name);
+            });
 
-            country.currencies.forEach(currency => {
-                currenciesCode.push(currency.code)
-            })
+            country.currencies.forEach((currency) => {
+                currenciesCode.push(currency.code);
+            });
 
-            country.currencies.forEach(currency => {
-                currenciesSymbol.push(currency.symbol)
-            })
+            country.currencies.forEach((currency) => {
+                currenciesSymbol.push(currency.symbol);
+            });
         }
     });
 
@@ -54,13 +54,13 @@ function CountryDetails({ darkMode, countries }) {
                     <div className="info_container">
                         <div className="left_info">
                             <p>
-                                Name:{''}
+                                Name:
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
                                     {name}
                                 </span>
                             </p>
                             <p>
-                                Capital:{''}
+                                Capital:
                                 <span className={`values ${darkMode ? 'darkMode' : ''}`}>
                                     {capital}
                                 </span>
@@ -68,57 +68,63 @@ function CountryDetails({ darkMode, countries }) {
                         </div>
                         <div className="right_info">
                             <p>
-                                Currency name:{''}
-                                {currenciesName.map(currency => {
-                                    if (currenciesName.indexOf(currency) !== currenciesName.length - 1) {
-                                        return (
-                                            <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                                {currency}
-                                            </span>
-                                        );
-                                    } else {
+                                Currency name:
+                                {currenciesName.map((currency) => {
+                                    if (
+                                        currenciesName.indexOf(currency) !==
+                                        currenciesName.length - 1
+                                    ) {
                                         return (
                                             <span className={`values ${darkMode ? 'darkMode' : ''}`}>
                                                 {currency}
                                             </span>
                                         );
                                     }
+                                    return (
+                                        <span className={`values ${darkMode ? 'darkMode' : ''}`}>
+                                            {currency}
+                                        </span>
+                                    );
                                 })}
                             </p>
                             <p>
-                                Currency Symbol:{''}
-                                {currenciesSymbol.map(currency => {
-                                    if (currenciesSymbol.indexOf(currency) !== currenciesSymbol.length - 1) {
+                                Currency Symbol:
+                                {currenciesSymbol.map((currency) => {
+                                    if (
+                                        currenciesSymbol.indexOf(currency) !==
+                                        currenciesSymbol.length - 1
+                                    ) {
                                         return (
-                                            <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                                {currency}
-                                            </span>
-                                        );
-                                    } else {
-                                        return (
-                                            <span className={`values ${darkMode ? 'darkMode' : ''}`}>
+                                            <span className={`values ${darkMode ? "darkMode" : ""}`}>
                                                 {currency}
                                             </span>
                                         );
                                     }
+                                    return (
+                                        <span className={`values ${darkMode ? 'darkMode' : ''}`}>
+                                            {currency}
+                                        </span>
+                                    );
                                 })}
                             </p>
                             <p>
-                                Currency Code:{''}
-                                {currenciesCode.map(currency => {
-                                    if (currenciesSymbol.indexOf(currency) !== currenciesCode.length - 1) {
+                                Currency Code:
+                                {currenciesCode.map((currency) => {
+                                    if (
+                                        currenciesSymbol.indexOf(currency) !==
+                                        currenciesCode.length - 1
+                                    ) {
                                         return (
-                                            <span className={`values ${darkMode ? 'darkMode' : ''}`}>
+                                            <span className={`values ${darkMode ? "darkMode" : ""}`}>
                                                 {currency}
                                             </span>
                                         );
-                                    } else {
-                                        return (
-                                            <span className={`values ${darkMode ? 'darkMode' : ''}`}>
-                                                {currency},
-                                            </span>
-                                        );
                                     }
+                                    return (
+                                        <span className={`values ${darkMode ? 'darkMode' : ''}`}>
+                                            {currency},
+                                        </span>
+                                    );
                                 })}
                             </p>
                         </div>

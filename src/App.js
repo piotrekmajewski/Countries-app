@@ -8,11 +8,16 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { Routes, Route } from "react-router-dom";
 import CountryDetails from "./components/CountryDetails";
 
+const sortStates = {
+    ascending: 'ascending',
+    descending: 'descending'
+}
+
 function App() {
     const [darkMode, setDarkMode] = useState(false);
     const [countries, setCountries] = useState([]);
-    const countriesInputRef = useRef();
-    const alphabetically = useRef();
+    const [searchValue, setSearchValue] = useState('');
+    const [sortState, setSortState] = useState(sortStates.ascending);
     const navigate = useNavigate();
 
     const noCountries = countries.status || countries.message;
@@ -21,24 +26,21 @@ function App() {
         setDarkMode((prevState) => !prevState);
     };
 
-    useEffect(() => {
-        try {
-            fetchData()
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
-
-    const fetchData = async () => {
+    const fetchUnitedCountriesData = async () => {
         const response = await fetch("https://restcountries.com/v2/name/united");
         const data = await response.json();
 
         setCountries(data);
     };
 
+    const handleOnChange = (e) => {
+        setSearchValue(e.target.value);
+    }
+
+    const shouldFetchCountries = searchValue.trim().length >= 2;
+
     const searchCountries = () => {
-        const searchValue = countriesInputRef.current.value;
-        if (searchValue.trim()) {
+        if (shouldFetchCountries) {
             const fetchSearch = async () => {
                 const response = await fetch(`https://restcountries.com/v2/name/${searchValue}`);
                 const data = await response.json();
@@ -52,13 +54,21 @@ function App() {
                 console.log(error);
             }
         } else {
-            fetchData();
+            fetchUnitedCountriesData();
         }
     };
 
     const showDetails = (code) => {
         navigate(`/${code}`);
     };
+
+    useEffect(() => {
+        try {
+            fetchUnitedCountriesData()
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
 
     return (
         <div className={`app ${darkMode ? 'darkMode' : ''}`}>
@@ -70,26 +80,26 @@ function App() {
                         <div className="app-body">
                             <div className="inputs">
                                 <div className={`search_input ${darkMode ? 'darkMode' : ''}`}>
-                                    <input type="text" placeholder="Szukaj kraju..." ref={countriesInputRef} onChange={searchCountries} />
-                                </div>
-                                <div className="useful-buttons">
-                                    <div className="search-button">
-                                        <button className={`search-btn ${darkMode ? 'darkMode' : ''}`}>
-                                            Szukaj
-                                        </button>
-                                    </div>
+                                    <input type="text" placeholder="Szukaj kraju..." onChange={handleOnChange} value={searchValue}
+                                    />
                                     <div className="reset-button">
-                                        <button className={`reset-btn ${darkMode ? 'darkMode' : ''}`}>
+                                        <button className={`reset-btn ${darkMode ? 'darkMode' : ''}`} onClick={() => setSearchValue('')}>
                                             <ClearIcon />
                                         </button>
                                     </div >
                                 </div>
-                                <div className={`filter-alphabetically ${darkMode ? 'darkMode' : ''}`}>
-                                    <select ref={alphabetically}>
-                                        <option>A - Z</option>
-                                        <option>Z - A</option>
-                                    </select>
+                                <div className="useful-buttons">
+                                    <div className="search-button">
+                                        <button className={`search-btn ${darkMode ? 'darkMode' : ''}`} onClick={searchCountries} disabled={!shouldFetchCountries}>
+                                            Szukaj
+                                        </button>
+                                    </div>
                                 </div>
+                                {/* <div className={`alphabetically-button ${darkMode ? 'darkMode' : ''}`}> */}
+                                <button className={`alphabetically-button ${darkMode ? 'darkMode' : ''}`} onClick={() => setSortState(sortState === sortStates.ascending ? sortStates.descending : sortStates.ascending)}>
+                                    {sortState === sortStates.ascending ? 'A - Z' : 'Z - A'}
+                                </button>
+                                {/* </div> */}
                             </div>
                             <div className="countries">
                                 {
@@ -109,6 +119,7 @@ function App() {
                                     )}
                             </div>
                             {/* <Pagination /> */}
+
                         </div>
                     }
                 />
