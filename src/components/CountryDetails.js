@@ -62,7 +62,6 @@ function CountryDetails({ darkMode, countries }) {
                                 <span className={`values ${darkMode ? "darkMode" : ""}`}>{capital}</span>
                             </p>
                         </div>
-                        <div className='right_info'>
                             <p>
                                 Currency name:
                                 {currenciesName.map((currency) => {
@@ -94,7 +93,6 @@ function CountryDetails({ darkMode, countries }) {
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
 

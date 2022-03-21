@@ -87,23 +87,21 @@ function HomePage() {
                                     </div>
                                 </div>
                                 <div className='useful-buttons'>
-                                    <div className='search-button'>
-                                        <button
+                                        <button 
                                             className={`search-btn ${darkMode ? "darkMode" : ""}`}
                                             onClick={searchCountries}
                                             disabled={!shouldFetchCountries}
                                         >
                                             Szukaj
                                         </button>
-                                    </div>
-                                </div>
-                                <button
+                                        <button
                                     className={`alphabetically-button ${darkMode ? "darkMode" : ""}`}
                                     onClick={() =>
                                         setSortState(sortState === sortStates.ascending ? sortStates.descending : sortStates.ascending)}
                                 >
                                     {sortState === sortStates.ascending ? "A - Z" : "Z - A"}
                                 </button>
+                                </div>         
                             </div>
                             <div className='countries'>
                                 {!noCountries ? (
